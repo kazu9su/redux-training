@@ -18,16 +18,12 @@ const requestPosts = (subreddit) => ({
   subreddit,
 });
 
-const receivePosts = (subreddit, json) => {
-  
-  console.log(json)
-  return {
-    type: RECEIVE_POSTS,
-    subreddit,
-    posts: json.data.childNodes.map(child => child.data),
-    receivedAt: Date.now(),
-  }
-}
+const receivePosts = (subreddit, json) => ({
+  type: RECEIVE_POSTS,
+  subreddit,
+  posts: json.data.childNodes.map(child => child.data),
+  receivedAt: Date.now(),
+})
 
 const fetchPosts = (subreddit) => ((dispatch) => {
   dispatch(requestPosts(subreddit));
